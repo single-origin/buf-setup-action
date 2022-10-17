@@ -108,6 +108,10 @@ async function getDownloadURL(
     // https://nodejs.org/api/process.html#process_process_platform
     case "linux":
       platform = "Linux";
+      // For Linux, aarch64 is the correct architecture instead of arm64. NodeJS doesnt have aarch64 as a process arch.
+      if (architecture === "arm64") {
+        architecture = "aarch64";
+      }
       break;
     case "darwin":
       platform = "Darwin";
